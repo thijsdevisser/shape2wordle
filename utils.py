@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
-def get_guesses_test(answer, desired_shape, colour, shape_dict):
+def get_guesses(answer, desired_shape, colour, shape_dict):
     guesses = [0, 0, 0, 0, 0, 0]
     shape = [0, 0, 0, 0, 0, 0]
 
