@@ -1,7 +1,7 @@
 import numpy as np
 from utils import get_guesses_test
 
-answer = 'nigga'
+answer = 'jhgjk'
 shape = 'test'
 colour = 2
 shape_dict = {
