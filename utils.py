@@ -63,15 +63,18 @@ def get_guesses_test(answer, desired_shape, colour, shape_dict):
             word_shape = np.array(letter_score, dtype = int)[::-1]
             for i, row in enumerate(shape_dict[desired_shape]):
                 if colour == 0:
-                    if np.all(row == word_shape):
+                    row_mask = row != 0
+                    word_shape_mask = word_shape != 0
+                    if np.all(row_mask == word_shape_mask):
                         guesses[i] = word
                         shape[i] = word_shape
                 elif colour == 1:
-                    if np.all(row == word_shape):
+                    if np.all(row == word_shape) and 2 not in word_shape:
                         guesses[i] = word
                         shape[i] = word_shape
                 elif colour == 2:
-                    if np.all(row == word_shape):
+                    row[row == 1] = 2
+                    if np.all(row == word_shape) and 1 not in word_shape:
                         guesses[i] = word
                         shape[i] = word_shape
 
