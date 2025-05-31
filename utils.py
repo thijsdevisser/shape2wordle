@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
-def get_guesses(answer, desired_shape, colour, shape_dict):
+def shape2wordle(answer, desired_shape, colour, shape_dict):
     guesses = [0, 0, 0, 0, 0, 0]
     shape = [0, 0, 0, 0, 0, 0]
 
@@ -114,7 +114,7 @@ def shape_dict():
             [0, 1, 0, 1, 0],
             [0, 0, 0, 0, 0]
         ]),
-        'alien1': np.array([
+        'alien': np.array([
             [0, 1, 0, 1, 0],
             [1, 1, 1, 1, 1],
             [1, 0, 1, 0, 1],
