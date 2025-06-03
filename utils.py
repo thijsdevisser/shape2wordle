@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+import string
 
 def shape2wordle(answer, desired_shape, colour, shape_dict):
     guesses = [0, 0, 0, 0, 0, 0]
@@ -9,8 +10,10 @@ def shape2wordle(answer, desired_shape, colour, shape_dict):
     with open('valid-wordle-words.txt', 'r') as file:
         for line in file:
             word = line.strip()
+            if word == answer:
+                continue
             letter_score = []
-            counter = 0
+            counter = {letter: 0 for letter in string.ascii_lowercase}
 
             for i, letter in enumerate(reversed(word)): 
                 index = 4 - i
@@ -21,11 +24,11 @@ def shape2wordle(answer, desired_shape, colour, shape_dict):
                         
                 if letter == answer[index]:
                     letter_score.append(2)
-                    counter += 1 
+                    counter[letter] += 1 
 
-                elif letter in answer and counter < amount:
+                elif letter in answer and counter[letter] < amount:
                     letter_score.append(1)
-                    counter += 1
+                    counter[letter] += 1
                 else:
                     letter_score.append(0)
 
