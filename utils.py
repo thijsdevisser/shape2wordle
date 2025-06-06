@@ -15,14 +15,13 @@ def shape2wordle(answer, desired_shape, colour, shape_dict):
             letter_score = []
             counter = {letter: 0 for letter in string.ascii_lowercase}
 
-            for i, letter in enumerate(reversed(word)): 
-                index = 4 - i
+            for i, letter in enumerate(word): 
                 amount = 0
                 for position in answer:
                     if letter == position:
                         amount += 1
                         
-                if letter == answer[index]:
+                if letter == answer[i]:
                     letter_score.append(2)
                     counter[letter] += 1 
 
@@ -32,7 +31,7 @@ def shape2wordle(answer, desired_shape, colour, shape_dict):
                 else:
                     letter_score.append(0)
 
-            word_shape = np.array(letter_score, dtype = int)[::-1]
+            word_shape = np.array(letter_score, dtype = int)
             for i, row in enumerate(shape_dict[desired_shape]):
                 if colour == 0:
                     row_mask = row != 0
@@ -58,9 +57,9 @@ def shape2wordle(answer, desired_shape, colour, shape_dict):
     return 
 
 def plot(shape):
-    cmap = ListedColormap(['gray', 'orange', 'green'])
+    cmap = ListedColormap(['gray', 'goldenrod', 'green'])
     plt.figure(figsize=(4, 2))  
-    plt.imshow(shape, cmap=cmap)
+    plt.imshow(shape, cmap=cmap, vmin=0, vmax=2)
     plt.xticks([])
     plt.yticks([])
     plt.grid(False)
@@ -132,6 +131,14 @@ def shape_dict():
             [0, 1, 1, 1, 0],
             [0, 1, 0, 1, 0],
             [1, 0, 0, 0, 1]
-        ])
+        ]),
+        'among_us': np.array([
+            [0, 1, 1, 1, 0],
+            [0, 1, 0, 0, 0],
+            [1, 1, 1, 1, 0],
+            [1, 1, 1, 1, 0],
+            [0, 1, 1, 1, 0],
+            [0, 1, 0, 1, 0]
+        ]),
     }
     return shape_dict
